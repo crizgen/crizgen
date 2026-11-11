@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ink: #0b0b0c;
+        --ink2: #161618;
+        --cream: #f3ede2;
+        --sand: #e7dcc8;
+        --paper: #fbf8f2;
+        --ember: #ff4d1c;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); }
+      #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; color: var(--cream); }
+      .serif { font-family: "Playfair Display", serif; font-style: italic; font-weight: 400; }
+
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      #s-intro { background: radial-gradient(1200px 800px at 70% 30%, rgba(255,77,28,.45), var(--ink) 70%); }
+      #s-ask { background: linear-gradient(135deg, #16161a, #1d1410 55%, #161618); }
+      #s-read { background: linear-gradient(135deg, #e9e0cf, #e7dcc8); }
+      #s-crm { background: linear-gradient(135deg, #2a1a14, #1a1210 55%, #161618); }
+      #s-dis { background: linear-gradient(135deg, #ff5a28, #c93a12); }
+      #s-outro { background: radial-gradient(1200px 800px at 30% 70%, rgba(255,77,28,.4), var(--ink) 70%); }
+
+      /* ---------- window ---------- */
+      .win { position: absolute; left: 310px; top: 150px; width: 1300px; height: 780px; border-radius: 28px;
+        overflow: hidden; background: var(--paper); color: var(--ink); box-shadow: 0 50px 120px rgba(0,0,0,.45); opacity: 0; }
+      .win.dark { background: #101012; color: var(--cream); box-shadow: 0 50px 120px rgba(0,0,0,.6), 0 0 0 2px rgba(243,237,226,.08); }
+      .bar { height: 64px; display: flex; align-items: center; gap: 10px; padding: 0 26px; border-bottom: 2px solid rgba(11,11,12,.08); }
+      .dark .bar { border-bottom-color: rgba(243,237,226,.1); }
+      .dot { width: 14px; height: 14px; border-radius: 50%; background: rgba(11,11,12,.2); display: block; }
+      .dark .dot { background: rgba(243,237,226,.2); }
+      .dot.e { background: var(--ember) !important; }
+      .url { margin-left: 14px; padding: 5px 20px; border-radius: 99px; font-size: 18px; font-family: "JetBrains Mono", monospace;
+        background: rgba(11,11,12,.05); color: rgba(11,11,12,.5); }
+      .dark .url { background: rgba(243,237,226,.06); color: rgba(243,237,226,.5); }
+      .body { position: absolute; left: 0; right: 0; top: 64px; bottom: 0; padding: 40px; }
+
+      /* ---------- ask ---------- */
+      .status { font-size: 24px; color: rgba(243,237,226,.6); display: flex; align-items: center; gap: 12px; }
+      .live { width: 14px; height: 14px; border-radius: 50%; background: #34d399; display: block; }
+      .msgs { margin-top: 34px; display: flex; flex-direction: column; gap: 26px; }
+      .bubble { padding: 24px 32px; border-radius: 30px; font-size: 36px; line-height: 1.3; max-width: 760px; }
+      .bubble.user { align-self: flex-end; background: var(--ember); color: var(--ink); font-weight: 700; border-bottom-right-radius: 8px; }
+      .bubble.bot { background: rgba(243,237,226,.1); border-bottom-left-radius: 8px; }
+      .slot { display: grid; }
+      .slot > * { grid-area: 1 / 1; align-self: start; }
+      .typing { display: flex; gap: 10px; width: 120px; justify-content: center; padding: 30px 0; }
+      .typing i { width: 16px; height: 16px; border-radius: 50%; background: rgba(243,237,226,.7); display: block; }
+      .chip { align-self: flex-start; padding: 10px 24px; border-radius: 99px; background: rgba(255,77,28,.16); color: var(--ember);
+        font-family: "JetBrains Mono", monospace; font-size: 22px; }
+      .input { position: absolute; left: 40px; right: 40px; bottom: 36px; height: 76px; border: 2px solid rgba(243,237,226,.16);
+        border-radius: 99px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px 0 34px;
+        font-size: 28px; color: rgba(243,237,226,.4); }
+      .input b { width: 46px; height: 46px; border-radius: 50%; background: var(--ember); color: var(--ink); display: grid; place-items: center; font-size: 26px; }
+
+      /* ---------- reader ---------- */
+      .rd { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; height: 100%; }
+      .sheet { position: relative; background: #fff; border-radius: 18px; border: 2px solid rgba(11,11,12,.08); padding: 34px; overflow: hidden;
+        box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+      .sheet .hd { display: flex; justify-content: space-between; align-items: center; font-family: "JetBrains Mono", monospace;
+        font-size: 20px; letter-spacing: .15em; color: rgba(11,11,12,.45); margin-bottom: 20px; }
+      .ln { height: 16px; border-radius: 8px; background: rgba(11,11,12,.1); margin-top: 18px; }
+      .hl { border-radius: 10px; padding: 14px 10px; margin: 8px -10px; background: rgba(255,77,28,0); }
+      .hl .ln { margin: 0; background: rgba(11,11,12,.7); height: 18px; }
+      .hl.sm .ln { background: rgba(11,11,12,.45); }
+      .scan { position: absolute; left: 0; right: 0; top: 0; height: 5px; background: var(--ember); box-shadow: 0 0 26px 6px rgba(255,77,28,.6); opacity: 0; }
+      .flds { display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+      .fld { background: #fff; border: 2px solid rgba(11,11,12,.08); border-radius: 18px; padding: 22px 28px; opacity: 0; }
+      .fld small { display: block; font-family: "JetBrains Mono", monospace; font-size: 18px; letter-spacing: .15em; text-transform: uppercase; color: rgba(11,11,12,.45); }
+      .fld b { font-size: 36px; }
+      .sent { background: var(--ink); color: var(--cream); border-radius: 18px; padding: 22px 28px; font-size: 28px; opacity: 0; }
+
+      /* ---------- crm ---------- */
+      .board { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; height: 100%; }
+      .col { background: rgba(11,11,12,.06); border-radius: 22px; padding: 22px; }
+      .col h4 { font-family: "JetBrains Mono", monospace; font-size: 20px; letter-spacing: .18em; text-transform: uppercase; color: rgba(11,11,12,.5); margin-bottom: 18px; }
+      .card { height: 112px; background: #fff; border-radius: 16px; padding: 24px; margin-bottom: 16px; box-shadow: 0 6px 16px rgba(0,0,0,.06); opacity: 0; }
+      .card .ln { margin-top: 0; height: 16px; background: rgba(11,11,12,.7); width: 70%; }
+      .card .ln + .ln { margin-top: 16px; width: 45%; background: rgba(11,11,12,.2); }
+      .spacer { height: 128px; }
+      .mover { position: absolute; top: 70px; left: 0; width: 350px; height: 112px; border-radius: 16px; background: var(--ember); padding: 24px;
+        box-shadow: 0 20px 40px rgba(255,77,28,.35); opacity: 0; z-index: 5; }
+      .mover .ln { margin-top: 0; height: 16px; width: 72%; background: var(--ink); }
+      .mover .ln + .ln { margin-top: 16px; width: 48%; background: rgba(11,11,12,.4); }
+      .won { position: absolute; right: 18px; bottom: 16px; font-size: 24px; font-weight: 700; color: var(--ink); opacity: 0; }
+
+      /* ---------- dispatch ---------- */
+      .phone { position: absolute; left: 740px; top: 100px; width: 440px; height: 880px; border-radius: 64px; border: 8px solid var(--ink);
+        background: var(--sand); overflow: hidden; box-shadow: 0 50px 120px rgba(0,0,0,.4); opacity: 0; }
+      .map { position: absolute; inset: 0; background-image: linear-gradient(rgba(11,11,12,.08) 2px, transparent 2px), linear-gradient(90deg, rgba(11,11,12,.08) 2px, transparent 2px);
+        background-size: 56px 56px; }
+      .phone svg { position: absolute; inset: 0; }
+      .eta { position: absolute; left: 20px; right: 20px; bottom: 20px; background: var(--ink); color: var(--cream); border-radius: 36px; padding: 28px 32px; height: 168px; }
+      .eta small { font-family: "JetBrains Mono", monospace; font-size: 18px; letter-spacing: .18em; text-transform: uppercase; color: rgba(243,237,226,.5); }
+      .eta .t { position: absolute; left: 32px; top: 68px; font-size: 40px; font-weight: 700; }
+      .eta .prog { position: absolute; left: 32px; right: 32px; bottom: 28px; height: 8px; border-radius: 8px; background: rgba(243,237,226,.15); overflow: hidden; }
+      .eta .prog i { display: block; height: 8px; width: 100%; border-radius: 8px; background: var(--ember); transform-origin: left; }
+
+      /* ---------- type scenes ---------- */
+      .big { position: absolute; left: 175px; font-weight: 700; letter-spacing: -.045em; line-height: .92; }
+      .mono { font-family: "JetBrains Mono", monospace; letter-spacing: .25em; text-transform: uppercase; font-size: 26px; color: rgba(243,237,226,.6); }
+      .mask { overflow: hidden; display: block; padding-bottom: 14px; margin-bottom: -14px; }
+      .mask > span { display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+
+      <!-- ===== INTRO 0-3 ===== -->
+      <div id="s-intro" class="clip scene" data-start="0" data-duration="3" data-track-index="1">
+        <p id="in-label" class="big mono" style="top: 250px; left: 175px; opacity: 0">AI, web &amp; app studio</p>
+        <h1 class="big" style="top: 320px; font-size: 150px">
+          <span class="mask"><span id="in-l1">We build</span></span>
+          <span class="mask"><span id="in-l2">things people</span></span>
+          <span class="mask"><span id="in-l3" class="serif" style="color: var(--ember); font-weight: 400">actually love.</span></span>
+        </h1>
+        <p id="in-brand" class="big serif" style="top: 90px; font-size: 64px; font-weight: 400; opacity: 0">Crizgen<span style="color: var(--ember)">.</span></p>
+      </div>
+
+      <!-- ===== ASK 3-9 ===== -->
+      <div id="s-ask" class="clip scene" data-start="3" data-duration="6" data-track-index="1">
+        <div id="ask-win" class="win dark">
+          <div class="bar"><i class="dot e"></i><i class="dot"></i><i class="dot"></i><span class="url">your-site.com / help</span></div>
+          <div class="body">
+            <div class="status"><i class="live"></i> Support assistant</div>
+            <div class="msgs">
+              <div id="ask-q" class="bubble user">Where's my order #1042?</div>
+              <div class="slot">
+                <div id="ask-typing" class="bubble bot typing"><i></i><i></i><i></i></div>
+                <div id="ask-a" class="bubble bot"><span class="aw">It</span> <span class="aw">left</span> <span class="aw">our</span> <span class="aw">warehouse</span> <span class="aw">this</span> <span class="aw">morning</span> <span class="aw">and</span> <span class="aw">will</span> <span class="aw">arrive</span> <span class="aw">tomorrow</span> <span class="aw">by</span> <span class="aw">6</span> <span class="aw">PM.</span> <span class="aw">Want</span> <span class="aw">the</span> <span class="aw">tracking</span> <span class="aw">link?</span></div>
+              </div>
+              <div id="ask-chip" class="chip">▤ Order #1042 · Shipped today</div>
+            </div>
+            <div class="input">Ask anything… <b>↑</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== READER 9-15 ===== -->
+      <div id="s-read" class="clip scene" data-start="9" data-duration="6" data-track-index="1">
+        <div id="rd-win" class="win">
+          <div class="bar"><i class="dot e"></i><i class="dot"></i><i class="dot"></i><span class="url">reader.app / inbox</span></div>
+          <div class="body">
+            <div class="rd">
+              <div class="sheet">
+                <div class="hd"><span>INVOICE</span><span class="ln" style="width: 90px; margin: 0"></span></div>
+                <div id="rd-h1" class="hl"><div class="ln" style="width: 66%"></div></div>
+                <div id="rd-h2" class="hl sm"><div class="ln" style="width: 48%"></div></div>
+                <div class="ln" style="width: 80%"></div>
+                <div class="ln" style="width: 92%"></div>
+                <div class="ln" style="width: 64%"></div>
+                <div class="ln" style="width: 86%"></div>
+                <div id="rd-h3" class="hl" style="position: absolute; right: 34px; bottom: 40px; width: 62%"><div class="ln" style="margin-left: auto; width: 70%; height: 24px"></div></div>
+                <div id="rd-scan" class="scan"></div>
+              </div>
+              <div class="flds">
+                <div id="rd-f1" class="fld"><small>Vendor</small><b>Northwind Traders</b></div>
+                <div id="rd-f2" class="fld"><small>Invoice date</small><b>04 Nov 2026</b></div>
+                <div id="rd-f3" class="fld"><small>Total</small><b>₹ 48,200</b></div>
+                <div id="rd-sent" class="sent">Sent to accounting ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PIPELINE 15-21 ===== -->
+      <div id="s-crm" class="clip scene" data-start="15" data-duration="6" data-track-index="1">
+        <div id="crm-win" class="win">
+          <div class="bar"><i class="dot e"></i><i class="dot"></i><i class="dot"></i><span class="url">pipeline.app / deals</span></div>
+          <div class="body">
+            <div class="board">
+              <div class="col"><h4>New</h4><div class="spacer"></div><div class="card cw"><div class="ln"></div><div class="ln"></div></div><div class="card cw"><div class="ln"></div><div class="ln"></div></div></div>
+              <div class="col"><h4>In talks</h4><div class="spacer"></div><div class="card cw"><div class="ln"></div><div class="ln"></div></div></div>
+              <div class="col"><h4>Won</h4><div class="spacer"></div><div class="card cw"><div class="ln"></div><div class="ln"></div></div></div>
+              <div id="crm-mover" class="mover"><div class="ln"></div><div class="ln"></div><span id="crm-won" class="won">Won ✓</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== DISPATCH 21-27 ===== -->
+      <div id="s-dis" class="clip scene" data-start="21" data-duration="6" data-track-index="1">
+        <div id="dis-phone" class="phone">
+          <div class="map"></div>
+          <svg viewBox="0 0 424 864" fill="none">
+            <path id="dis-route" d="M80 700 C80 560 300 600 260 440 S350 220 330 130" stroke="#0b0b0c" stroke-width="7" stroke-linecap="round" opacity=".55"></path>
+            <circle cx="80" cy="700" r="13" fill="#0b0b0c"></circle>
+            <circle cx="330" cy="130" r="17" fill="#ff4d1c"></circle>
+            <circle cx="330" cy="130" r="30" fill="#ff4d1c" opacity=".25"></circle>
+            <circle id="dis-halo" r="32" fill="#ff4d1c" opacity=".3"></circle>
+            <circle id="dis-dot" r="15" fill="#ff4d1c" stroke="#fff" stroke-width="5"></circle>
+          </svg>
+          <div class="eta">
+            <small>On the way</small>
+            <div id="dis-t1" class="t">Arriving in 8 min</div>
+            <div id="dis-t2" class="t" style="opacity: 0; color: var(--ember)">Delivered ✓</div>
+            <div class="prog"><i id="dis-bar"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== OUTRO 27-30 ===== -->
+      <div id="s-outro" class="clip scene" data-start="27" data-duration="3" data-track-index="1">
+        <p id="out-label" class="big mono" style="top: 300px; opacity: 0">Have an idea?</p>
+        <h2 class="big" style="top: 370px; font-size: 170px">
+          <span class="mask"><span id="out-l1" class="serif" style="color: var(--ember); font-weight: 400">Let's talk.</span></span>
+        </h2>
+        <p id="out-url" class="big" style="top: 640px; font-size: 52px; font-weight: 700; letter-spacing: -.02em; opacity: 0">crizgen.com</p>
+        <p id="out-mail" class="big" style="top: 720px; font-size: 34px; font-weight: 400; letter-spacing: 0; color: rgba(243,237,226,.6); opacity: 0">crizgen2026@gmail.com</p>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+
+      /* ---- INTRO (0-3) ---- */
+      tl.fromTo("#in-brand", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, 0.1);
+      tl.fromTo("#in-label", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.3);
+      tl.fromTo("#in-l1", { y: "115%" }, { y: 0, duration: 0.7, ease: "power4.out" }, 0.4);
+      tl.fromTo("#in-l2", { y: "115%" }, { y: 0, duration: 0.7, ease: "power4.out" }, 0.55);
+      tl.fromTo("#in-l3", { y: "115%" }, { y: 0, duration: 0.7, ease: "power4.out" }, 0.7);
+
+      /* ---- ASK (3-9) ---- */
+      tl.fromTo("#ask-win", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 3.0);
+      tl.fromTo("#ask-q", { opacity: 0, y: 24, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: E }, 3.8);
+      tl.fromTo("#ask-typing", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 4.5);
+      tl.fromTo("#ask-typing i", { y: 0, opacity: 0.4 }, { y: -9, opacity: 1, duration: 0.3, stagger: 0.12, repeat: 1, yoyo: true, ease: "sine.inOut" }, 4.5);
+      tl.to("#ask-typing", { opacity: 0, duration: 0.15 }, 5.3);
+      tl.fromTo("#ask-a", { opacity: 0 }, { opacity: 1, duration: 0.1 }, 5.35);
+      tl.fromTo(".aw", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.18, stagger: 0.07 }, 5.4);
+      tl.fromTo("#ask-chip", { opacity: 0, scale: 0.9, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 6.9);
+      tl.to("#ask-win", { opacity: 0, y: -24, duration: 0.4, ease: "power2.in" }, 8.55);
+
+      /* ---- READER (9-15) ---- */
+      const hl0 = "rgba(255,77,28,0)", hl1 = "rgba(255,77,28,0.22)";
+      tl.fromTo("#rd-win", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 9.0);
+      tl.fromTo("#rd-scan", { opacity: 1, y: 0 }, { y: 560, duration: 2.6, ease: "power1.inOut" }, 9.9);
+      tl.to("#rd-scan", { opacity: 0, duration: 0.2 }, 12.4);
+      tl.fromTo("#rd-h1", { backgroundColor: hl0 }, { backgroundColor: hl1, duration: 0.25 }, 10.4);
+      tl.fromTo("#rd-f1", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: E }, 10.5);
+      tl.fromTo("#rd-h2", { backgroundColor: hl0 }, { backgroundColor: hl1, duration: 0.25 }, 11.1);
+      tl.fromTo("#rd-f2", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: E }, 11.2);
+      tl.fromTo("#rd-h3", { backgroundColor: hl0 }, { backgroundColor: hl1, duration: 0.25 }, 11.9);
+      tl.fromTo("#rd-f3", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: E }, 12.0);
+      tl.fromTo("#rd-sent", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 13.1);
+      tl.to("#rd-win", { opacity: 0, y: -24, duration: 0.45, ease: "power2.in" }, 14.45);
+
+      /* ---- PIPELINE (15-21) ---- */
+      // board: 3 columns; mover sits in each column's empty top slot
+      const X = [20, 435, 849];
+      tl.fromTo("#crm-win", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 15.0);
+      tl.fromTo(".cw", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, ease: E }, 15.6);
+      tl.fromTo("#crm-mover", { opacity: 0, x: X[0], y: 0 }, { opacity: 1, x: X[0], y: 0, duration: 0.4 }, 16.2);
+      tl.to("#crm-mover", { x: X[1], duration: 0.9, ease: "power3.inOut" }, 17.2);
+      tl.to("#crm-mover", { x: X[2], duration: 0.9, ease: "power3.inOut" }, 18.8);
+      tl.fromTo("#crm-won", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 19.8);
+      tl.to("#crm-win", { opacity: 0, y: -24, duration: 0.45, ease: "power2.in" }, 20.45);
+
+      /* ---- DISPATCH (21-27) ---- */
+      const route = document.getElementById("dis-route");
+      const L = route.getTotalLength();
+      route.style.strokeDasharray = L;
+      const dot = document.getElementById("dis-dot");
+      const halo = document.getElementById("dis-halo");
+      const place = (p) => {
+        const pt = route.getPointAtLength(p * L);
+        dot.setAttribute("cx", pt.x); dot.setAttribute("cy", pt.y);
+        halo.setAttribute("cx", pt.x); halo.setAttribute("cy", pt.y);
+      };
+      place(0);
+      const prox = { p: 0 };
+      tl.fromTo("#dis-phone", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.7, ease: E }, 21.0);
+      tl.fromTo(route, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" }, 21.9);
+      tl.fromTo(prox, { p: 0 }, { p: 1, duration: 3.6, ease: "power1.inOut", onUpdate: () => place(prox.p) }, 22.4);
+      tl.fromTo("#dis-bar", { scaleX: 0.08 }, { scaleX: 1, duration: 3.6, ease: "power1.inOut" }, 22.4);
+      tl.to("#dis-t1", { opacity: 0, duration: 0.2 }, 26.0);
+      tl.fromTo("#dis-t2", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 26.05);
+      tl.to("#dis-phone", { opacity: 0, y: -30, duration: 0.45, ease: "power2.in" }, 26.5);
+
+      /* ---- OUTRO (27-30) ---- */
+      tl.fromTo("#out-label", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 27.1);
+      tl.fromTo("#out-l1", { y: "115%" }, { y: 0, duration: 0.8, ease: "power4.out" }, 27.3);
+      tl.fromTo("#out-url", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, 27.7);
+      tl.fromTo("#out-mail", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, 27.85);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
