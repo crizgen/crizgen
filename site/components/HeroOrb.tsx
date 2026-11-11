@@ -37,7 +37,7 @@ const vertex = /* glsl */ `
 
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
     float d = distance(mv.xy, uMouse);
-    float push = smoothstep(1.5, 0.0, d);
+    float push = smoothstep(1.1, 0.0, d);
     mv.xy += normalize(mv.xy - uMouse + 0.0001) * push * 0.3;
 
     vRand = aRand;
@@ -57,13 +57,14 @@ const fragment = /* glsl */ `
     vec3 ember = vec3(1.0, 0.30, 0.11);
     vec3 cream = vec3(0.95, 0.93, 0.89);
     vec3 col = mix(cream, ember, step(0.64, vRand));
-    gl_FragColor = vec4(col * 0.9, a * (1.0 - uScroll) * 0.5);
+    gl_FragColor = vec4(col * 0.9, a * pow(1.0 - uScroll, 1.6) * 0.5);
   }
 `;
 
 function Particles({ input }: { input: React.RefObject<Input> }) {
   const mat = useRef<THREE.ShaderMaterial>(null);
   const pts = useRef<THREE.Points>(null);
+  const grp = useRef<THREE.Group>(null);
 
   const { geometry, uniforms } = useMemo(() => {
     const pos = new Float32Array(COUNT * 3);
@@ -101,7 +102,10 @@ function Particles({ input }: { input: React.RefObject<Input> }) {
   useFrame((state, dt) => {
     const m = mat.current;
     const p = pts.current;
-    if (!m || !p) return;
+    const g = grp.current;
+    if (!m || !p || !g) return;
+    g.position.set(state.viewport.width * 0.31, state.viewport.height * 0.04, 0);
+    g.scale.setScalar(0.66);
     const u = m.uniforms;
     u.uTime.value += dt;
     u.uScroll.value += (input.current.scroll - u.uScroll.value) * Math.min(1, dt * 4);
@@ -114,17 +118,19 @@ function Particles({ input }: { input: React.RefObject<Input> }) {
   });
 
   return (
-    <points ref={pts} geometry={geometry}>
-      <shaderMaterial
-        ref={mat}
-        vertexShader={vertex}
-        fragmentShader={fragment}
-        uniforms={uniforms}
-        transparent
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-      />
-    </points>
+    <group ref={grp}>
+      <points ref={pts} geometry={geometry}>
+        <shaderMaterial
+          ref={mat}
+          vertexShader={vertex}
+          fragmentShader={fragment}
+          uniforms={uniforms}
+          transparent
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+        />
+      </points>
+    </group>
   );
 }
 
@@ -165,7 +171,7 @@ export default function HeroOrb() {
     <div
       ref={box}
       aria-hidden
-      className="pointer-events-none absolute right-[-2%] top-[46%] z-0 aspect-square w-[min(46vw,66vh)] -translate-y-1/2"
+      className="pointer-events-none absolute inset-0 z-0"
     >
       <Canvas
         dpr={[1, 1.5]}
