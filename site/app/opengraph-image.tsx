@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Crizgen - web, mobile and AI studio";
+export const alt = "Crizgen - AI, web and mobile studio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -32,7 +32,7 @@ export default function OpengraphImage() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 30, color: "rgba(243,237,226,0.7)" }}>
-          <div style={{ display: "flex" }}>Websites · Web apps · Mobile apps · AI solutions</div>
+          <div style={{ display: "flex" }}>AI solutions · Websites · Web apps · Mobile apps</div>
           <div style={{ display: "flex" }}>crizgen.com</div>
         </div>
       </div>

@@ -23,7 +23,7 @@ export default function JsonLd() {
         url: `${SITE}/`,
         image: `${SITE}/opengraph-image`,
         description:
-          "Web, mobile and AI studio building websites, web apps, mobile apps and AI solutions for founders and businesses.",
+          "AI, web and mobile studio building AI solutions, websites, web apps and mobile apps for founders and businesses.",
         email: CONTACT.email,
         telephone: "+919092656327",
         address: {
@@ -36,11 +36,11 @@ export default function JsonLd() {
         },
         areaServed: "Worldwide",
         serviceType: [
+          "AI solutions and automation",
           "Website development",
           "Web application development",
           "Mobile app development",
           "UI/UX design",
-          "AI solutions and automation",
         ],
         parentOrganization: { "@id": `${SITE}/#org` },
       },

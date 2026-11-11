@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import Manifesto from "@/components/Manifesto";
 import Services from "@/components/Services";
 import AiSection from "@/components/AiSection";
-import Builds from "@/components/Builds";
 import Work from "@/components/Work";
 import JsonLd from "@/components/JsonLd";
 import Process from "@/components/Process";
@@ -19,9 +18,8 @@ export default function Home() {
       <main>
         <Hero />
         <Manifesto />
-        <Services />
         <AiSection />
-        <Builds />
+        <Services />
         <Work />
         <Process />
         <Contact />

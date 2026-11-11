@@ -46,19 +46,6 @@ export default function Manifesto() {
             />
           ))}
         </p>
-
-        <dl className="mt-20 grid gap-10 border-t border-ink/15 pt-10 md:grid-cols-3">
-          {[
-            ["Senior-only", "You work with the engineers and designers who build it."],
-            ["Fast by default", "Performance and accessibility are checked before launch, not after."],
-            ["Straight talk", "Plain-language proposals, fixed scopes, no surprise invoices."],
-          ].map(([t, d]) => (
-            <div key={t}>
-              <dt className="text-xl font-semibold">{t}</dt>
-              <dd className="mt-2 max-w-xs text-ink/65">{d}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );

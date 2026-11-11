@@ -5,8 +5,7 @@ export default function Footer() {
     <footer className="overflow-hidden bg-ink px-5 pt-16 text-cream md:px-10">
       <div className="mx-auto flex max-w-[1500px] flex-col justify-between gap-10 md:flex-row">
         <p className="max-w-xs text-cream/60">
-          Crizgen is a web and app studio, building for founders and businesses
-          worldwide.
+          Crizgen is an AI, web and app studio, building for founders and businesses worldwide.
         </p>
         <ul className="flex flex-wrap gap-x-8 gap-y-2">
           {NAV.map((l) => (

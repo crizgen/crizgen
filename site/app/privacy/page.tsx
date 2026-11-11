@@ -13,8 +13,8 @@ const sections: { h: string; body: React.ReactNode }[] = [
     h: "Who we are",
     body: (
       <p>
-        This website is run by Crizgen (&ldquo;we&rdquo;, &ldquo;us&rdquo;), a web, mobile
-        and AI studio based in Chennai, India. You can reach us at{" "}
+        This website is run by Crizgen (&ldquo;we&rdquo;, &ldquo;us&rdquo;), an AI, web
+        and mobile studio based in Chennai, India. You can reach us at{" "}
         <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
       </p>
     ),

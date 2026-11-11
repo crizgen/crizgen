@@ -68,7 +68,7 @@ export default function Hero() {
           transition={{ delay: 0.3 }}
           className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-cream/60"
         >
-          Web &amp; app studio
+          AI, web &amp; app studio
         </motion.p>
 
         <motion.h1
@@ -97,7 +97,7 @@ export default function Hero() {
             transition={{ delay: 0.9, duration: 0.8 }}
             className="max-w-md text-lg leading-snug text-cream/70"
           >
-            Websites, apps and AI that work for your business.
+            AI, websites and apps that work for your business.
           </motion.p>
 
           <motion.div

@@ -3,29 +3,20 @@
 import { motion, MotionConfig } from "motion/react";
 import { WORK } from "@/lib/content";
 import SplitReveal from "./SplitReveal";
-import {
-  CrmVisual,
-  ShopVisual,
-  AiChatVisual,
-  DeliveryVisual,
-  DocVisual,
-} from "./WorkVisuals";
+import { CrmVisual, AiChatVisual, DeliveryVisual, DocVisual } from "./WorkVisuals";
 
 const VISUALS = {
   crm: CrmVisual,
-  shop: ShopVisual,
   chat: AiChatVisual,
   delivery: DeliveryVisual,
   doc: DocVisual,
 } as const;
 
-const SPAN = ["md:col-span-3", "md:col-span-3", "md:col-span-2", "md:col-span-2", "md:col-span-2"];
 const BG = [
-  "bg-gradient-to-br from-[#2a1a14] via-[#1a1210] to-ink-2",
   "bg-gradient-to-br from-[#16161a] via-[#1d1410] to-ink-2",
-  "bg-gradient-to-br from-sand to-[#cdbd9f]",
-  "bg-gradient-to-br from-ember/90 to-[#c93a12]",
   "bg-gradient-to-br from-[#e9e0cf] to-sand",
+  "bg-gradient-to-br from-[#2a1a14] via-[#1a1210] to-ink-2",
+  "bg-gradient-to-br from-ember/90 to-[#c93a12]",
 ];
 
 export default function Work() {
@@ -48,12 +39,11 @@ export default function Work() {
               />
             </h2>
             <p className="max-w-sm text-cream/65">
-              Concept projects. Our way of showing how we approach real problems, from
-              first screen to working product.
+              Concept projects showing how we approach real problems.
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-6 md:gap-5">
+          <div className="grid gap-4 md:grid-cols-2 md:gap-5">
             {WORK.map((p, i) => {
               const Visual = VISUALS[p.visual];
               return (
@@ -62,38 +52,22 @@ export default function Work() {
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-8%" }}
-                  transition={{ duration: 0.8, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.8, delay: (i % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -6 }}
-                  className={`group flex flex-col overflow-hidden rounded-[2rem] border border-cream/10 bg-ink-2 ${SPAN[i]}`}
+                  className="flex flex-col overflow-hidden rounded-[2rem] border border-cream/10 bg-ink-2"
                 >
-                  <div
-                    className={`relative p-5 md:p-7 ${BG[i]} ${
-                      i < 2 ? "aspect-[16/11]" : "aspect-[4/3.1]"
-                    }`}
-                  >
+                  <div className={`relative aspect-[16/11] p-5 md:p-7 ${BG[i]}`}>
                     <Visual />
                     <span className="absolute right-4 top-4 z-10 rounded-full bg-ink/80 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-cream backdrop-blur">
                       Concept
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-6 md:p-8">
-                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-ember">
-                      {p.kind}
-                    </p>
+                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-ember">{p.kind}</p>
                     <h3 className="mt-3 font-display text-4xl italic leading-none md:text-5xl">
                       {p.title}
                     </h3>
-                    <p className="mt-4 text-cream/65">{p.desc}</p>
-                    <ul className="mt-6 flex flex-wrap gap-2">
-                      {p.tags.map((t) => (
-                        <li
-                          key={t}
-                          className="rounded-full border border-cream/15 px-3 py-1 text-xs text-cream/70"
-                        >
-                          {t}
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="mt-4 max-w-md text-cream/65">{p.desc}</p>
                   </div>
                 </motion.article>
               );

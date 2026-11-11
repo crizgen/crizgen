@@ -95,64 +95,6 @@ export function CrmVisual() {
   );
 }
 
-/* ----------------------------------------------------------------- Shop */
-export function ShopVisual() {
-  const t = useTick(900, 6, 3);
-  const sel = Math.floor(t / 2) % 3;
-  const count = sel + 1;
-  const added = t % 2 === 1;
-  const items = [
-    { c: "#ff4d1c", s: "rounded-full" },
-    { c: "#0b0b0c", s: "rounded-2xl" },
-    { c: "#d8c7a8", s: "rounded-t-full rounded-b-md" },
-  ];
-  return (
-    <Frame url="handmade.shop">
-      <div className="relative flex h-full flex-col p-4">
-        <div className="mb-3 flex items-center justify-between">
-          <span className="font-display text-xl italic">Hand&amp;Made</span>
-          <span className="relative">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d="M6 7h12l-1 13H7L6 7z" />
-              <path d="M9 7a3 3 0 0 1 6 0" />
-            </svg>
-            <motion.span
-              key={count}
-              initial={{ scale: 0.4 }}
-              animate={{ scale: 1 }}
-              className="absolute -right-2 -top-2 grid size-4 place-items-center rounded-full bg-ember text-[9px] font-bold text-ink"
-            >
-              {count}
-            </motion.span>
-          </span>
-        </div>
-        <div className="grid min-h-0 flex-1 grid-cols-3 gap-3">
-          {items.map((it, i) => (
-            <div
-              key={i}
-              className={`flex flex-col rounded-xl bg-ink/[.05] p-2 transition-all duration-300 ${
-                sel === i ? "ring-2 ring-ember" : ""
-              }`}
-            >
-              <div className="grid flex-1 place-items-center">
-                <div className={`size-[55%] ${it.s}`} style={{ background: it.c }} />
-              </div>
-              <div className="mt-2 h-1.5 w-3/4 rounded bg-ink/70" />
-              <div className="mt-1.5 h-1.5 w-1/3 rounded bg-ink/25" />
-            </div>
-          ))}
-        </div>
-        <motion.div
-          animate={{ opacity: added ? 1 : 0, y: added ? 0 : 8 }}
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-ink px-3 py-1.5 text-[10px] text-cream"
-        >
-          Added to bag ✓
-        </motion.div>
-      </div>
-    </Frame>
-  );
-}
-
 /* --------------------------------------------------------------- AI chat */
 const Q = "Where's my order #1042?";
 const A = "It left our warehouse this morning and will arrive tomorrow by 6 PM. Want the tracking link?";

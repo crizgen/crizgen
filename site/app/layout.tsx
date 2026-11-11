@@ -24,16 +24,16 @@ const mono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://crizgen.com"),
-  title: "Crizgen | Web, Mobile & AI Studio in Chennai",
+  title: "Crizgen | AI, Web & Mobile Studio in Chennai",
   alternates: { canonical: "/" },
   description:
-    "Crizgen is a Chennai studio building fast websites, web apps, mobile apps and AI solutions for ambitious businesses.",
+    "Crizgen is a Chennai studio building AI solutions, fast websites, web apps and mobile apps for ambitious businesses.",
   openGraph: {
     type: "website",
     url: "https://crizgen.com/",
-    title: "Crizgen | Web, Mobile & AI Studio",
+    title: "Crizgen | AI, Web & Mobile Studio",
     description:
-      "We design and build websites, web apps, mobile apps and AI solutions. Based in Chennai, India.",
+      "We design and build AI solutions, websites, web apps and mobile apps. Based in Chennai, India.",
   },
   twitter: { card: "summary_large_image" },
   icons: { icon: "/favicon.svg" },
