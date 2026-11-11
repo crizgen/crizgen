@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Manifesto from "@/components/Manifesto";
 import Services from "@/components/Services";
+import AiSection from "@/components/AiSection";
 import Builds from "@/components/Builds";
 import Work from "@/components/Work";
 import JsonLd from "@/components/JsonLd";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Manifesto />
         <Services />
+        <AiSection />
         <Builds />
         <Work />
         <Process />

@@ -157,6 +157,7 @@ export default function Contact() {
                 <option>A website or web app</option>
                 <option>A mobile app</option>
                 <option>UI / UX design</option>
+                <option>A free automation review</option>
                 <option>An AI solution or automation</option>
                 <option>The full package</option>
                 <option>Not sure yet</option>

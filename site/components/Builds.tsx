@@ -6,7 +6,7 @@ import SplitReveal from "./SplitReveal";
 
 export default function Builds() {
   return (
-    <section id="builds" className="bg-cream px-5 pb-28 text-ink md:px-10 md:pb-44">
+    <section id="builds" className="relative -mt-10 rounded-t-[2.5rem] bg-cream px-5 pb-28 pt-24 text-ink md:-mt-16 md:rounded-t-[4rem] md:px-10 md:pb-44 md:pt-36">
       <div className="mx-auto max-w-[1500px]">
         <h2 className="mb-14 text-[clamp(2.6rem,7vw,7rem)] font-medium leading-[0.92] tracking-[-0.04em]">
           <SplitReveal text="Things we" />

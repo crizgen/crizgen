@@ -36,7 +36,7 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <Magnetic strength={0.25}>
               <a href="#contact" className="rounded-full border border-white/70 px-5 py-2 text-sm">
                 Start a project

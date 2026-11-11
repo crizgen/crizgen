@@ -14,6 +14,7 @@ export const CONTACT = {
 export const NAV = [
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
+  { href: "#ai", label: "AI" },
   { href: "#builds", label: "What we build" },
   { href: "#work", label: "Work" },
   { href: "#process", label: "Process" },

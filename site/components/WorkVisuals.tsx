@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 /** Steps through 0..total-1 every `ms`. Freezes on `rest` when reduced motion is on. */
-function useTick(ms: number, total: number, rest: number) {
+export function useTick(ms: number, total: number, rest: number) {
   const reduce = useReducedMotion();
   const [t, setT] = useState(0);
   useEffect(() => {
@@ -15,7 +15,7 @@ function useTick(ms: number, total: number, rest: number) {
   return reduce ? rest : t;
 }
 
-function Frame({
+export function Frame({
   children,
   url,
   dark = false,
@@ -251,7 +251,7 @@ const CYCLE = 7;
 const off = "rgba(255,77,28,0)";
 const on = "rgba(255,77,28,0.22)";
 
-function Timed({
+export function Timed({
   a,
   className,
   children,

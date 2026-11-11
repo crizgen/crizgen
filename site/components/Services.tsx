@@ -146,9 +146,7 @@ export default function Services() {
             <div>
               <h3 className="font-display text-5xl italic md:text-6xl">AI solutions</h3>
               <p className="mt-4 max-w-lg text-cream/65">
-                Assistants that answer from your own content, tools that read documents and
-                automate repetitive work, and AI features inside your product. Practical,
-                measured, and built to save real time.
+                Assistants that answer from your own content, tools that read documents and automate repetitive work, AI features inside your product, and the automations that keep your business running on its own. Practical, measured, and built to save real time.
               </p>
             </div>
           </Card>
