@@ -8,7 +8,6 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import { TECH } from "@/lib/content";
 import SplitReveal from "./SplitReveal";
 import Magnetic from "./Magnetic";
 
@@ -37,7 +36,7 @@ export default function Hero() {
         mx.set((e.clientX - r.left) / r.width);
         my.set((e.clientY - r.top) / r.height);
       }}
-      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-ink px-5 pb-20 pt-28 md:px-10 md:pb-28"
+      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-ink px-5 pb-24 pt-28 md:px-10 md:pb-28"
     >
       {/* glow */}
       <motion.div
@@ -120,21 +119,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* tech marquee */}
-      <div className="relative mt-14 border-y border-cream/10 py-4" aria-hidden>
-        <div className="marquee-track font-display text-3xl italic text-cream/50 md:text-4xl">
-          {[0, 1].map((k) => (
-            <div key={k} className="flex shrink-0 items-center">
-              {TECH.map((t) => (
-                <span key={t + k} className="flex items-center">
-                  <span className="px-6">{t}</span>
-                  <span className="text-ember">✦</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

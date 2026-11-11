@@ -18,11 +18,6 @@ export const NAV = [
   { href: "#contact", label: "Contact" },
 ];
 
-export const TECH = [
-  "React", "Next.js", "TypeScript", "Node.js", "Flutter", "React Native",
-  "PostgreSQL", "Figma", "AWS", "Firebase", "Tailwind", "GraphQL",
-];
-
 export const PROCESS = [
   {
     n: "01",

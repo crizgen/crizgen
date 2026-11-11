@@ -65,15 +65,6 @@ body {
   100% { transform: translate(0, 0); }
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-@keyframes marquee {
-  to { transform: translateX(-50%); }
-}
-
 .spin-slow {
   animation: spin 18s linear infinite;
 }
@@ -88,7 +79,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .grain::after,
-  .marquee-track,
   .spin-slow {
     animation: none;
   }
