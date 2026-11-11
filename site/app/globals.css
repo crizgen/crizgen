@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0b0b0c;
+  --ink-2: #151517;
+  --cream: #f3ede2;
+  --sand: #e7dcc8;
+  --paper: #fbf8f2;
+  --ember: #ff4d1c;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-paper: var(--paper);
+  --color-ember: var(--ember);
+  --font-display: var(--font-instrument);
+  --font-sans: var(--font-bricolage);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  background: var(--ink);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--ember);
+  color: var(--ink);
+}
+
+/* film grain over everything */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+.spin-slow {
+  animation: spin 18s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.stroke-text {
+  -webkit-text-stroke: 1.5px currentColor;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::after,
+  .marquee-track,
+  .spin-slow {
+    animation: none;
+  }
+}
