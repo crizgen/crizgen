@@ -8,8 +8,14 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
+import dynamic from "next/dynamic";
 import SplitReveal from "./SplitReveal";
 import Magnetic from "./Magnetic";
+
+const HeroOrb = dynamic(() => import("./HeroOrb"), { ssr: false });
+
+/** seconds the logo intro holds the screen */
+const T = 1.15;
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -61,11 +67,13 @@ export default function Hero() {
         }}
       />
 
+      <HeroOrb />
+
       <div className="relative mx-auto flex w-full max-w-[1500px] flex-1 flex-col justify-center">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: T + 0.3 }}
           className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-cream/60"
         >
           AI, web &amp; app studio
@@ -76,17 +84,17 @@ export default function Hero() {
           className="text-[clamp(3.2rem,11.5vw,12rem)] font-medium leading-[0.88] tracking-[-0.04em]"
         >
           <span className="block">
-            <SplitReveal text="We build" delay={0.1} />
+            <SplitReveal text="We build" delay={T + 0.1} />
           </span>
           <span className="block">
             <SplitReveal
               text="things people"
-              delay={0.25}
+              delay={T + 0.25}
               accent={[]}
             />
           </span>
           <span className="block font-display italic text-ember">
-            <SplitReveal text="actually love." delay={0.4} />
+            <SplitReveal text="actually love." delay={T + 0.4} />
           </span>
         </motion.h1>
 
@@ -94,7 +102,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
+            transition={{ delay: T + 0.9, duration: 0.8 }}
             className="max-w-md text-lg leading-snug text-cream/70"
           >
             AI, websites and apps that work for your business.
@@ -103,12 +111,13 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.05, duration: 0.8 }}
+            transition={{ delay: T + 1.05, duration: 0.8 }}
             className="flex items-center gap-6"
           >
             <Magnetic>
               <a
                 href="#contact"
+                data-cursor="Start"
                 className="flex size-32 items-center justify-center rounded-full bg-ember text-center text-sm font-semibold leading-tight text-ink md:size-40 md:text-base"
               >
                 Start a<br />project ↗

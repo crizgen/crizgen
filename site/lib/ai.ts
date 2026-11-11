@@ -2,10 +2,11 @@ export const AI_INTRO =
   "You don't need an AI strategy. You need the repetitive work to stop eating time. We build assistants and automations that take it off your team, connect to the tools you already use, and keep a person in charge of the decisions that matter.";
 
 export const AI_FLOW = [
-  { label: "New enquiry", sub: "Email, form or WhatsApp" },
-  { label: "AI reads & decides", sub: "Understands it, picks the next step", ai: true },
-  { label: "Your tools update", sub: "CRM, sheet or accounts" },
-  { label: "Reply goes out", sub: "A person approves when it matters" },
+  { label: "Email", sub: "A new enquiry arrives" },
+  { label: "AI", sub: "OpenAI or Claude reads it and decides" },
+  { label: "Automation", sub: "n8n or Zapier routes it" },
+  { label: "Your tools", sub: "CRM, sheet or accounts update" },
+  { label: "WhatsApp", sub: "A person approves, the reply goes out" },
 ];
 
 export const AI_CAPS = [

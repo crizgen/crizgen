@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, MotionConfig } from "motion/react";
-import { AI_INTRO, AI_FLOW, AI_CAPS, AI_TOOLS, AI_TRUST } from "@/lib/ai";
+import { AI_INTRO, AI_CAPS, AI_TOOLS, AI_TRUST } from "@/lib/ai";
+import AiFlow from "./AiFlow";
 import SplitReveal from "./SplitReveal";
 import Magnetic from "./Magnetic";
 
@@ -58,30 +59,7 @@ export default function AiSection() {
             <p className="text-xl leading-snug text-cream/75 md:text-2xl">{AI_INTRO}</p>
           </Reveal>
 
-          {/* flow */}
-          <Reveal className="mt-14 md:mt-20">
-            <div className="relative grid gap-3 md:grid-cols-4 md:gap-5">
-              <div aria-hidden className="absolute inset-x-[12%] top-1/2 hidden h-px bg-cream/15 md:block">
-                <motion.span
-                  className="absolute -top-[3px] size-[7px] rounded-full bg-ember shadow-[0_0_14px_4px_rgba(255,77,28,0.7)]"
-                  animate={{ left: ["0%", "100%"] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: "linear" }}
-                />
-              </div>
-              {AI_FLOW.map((n, i) => (
-                <div
-                  key={n.label}
-                  className={`relative z-10 rounded-[1.5rem] border p-6 ${
-                    n.ai ? "border-ember bg-[#2a1610]" : "border-cream/15 bg-ink-2"
-                  }`}
-                >
-                  <span className="font-mono text-[11px] text-cream/40">0{i + 1}</span>
-                  <p className="mt-3 text-xl font-semibold">{n.label}</p>
-                  <p className="mt-1 text-sm text-cream/60">{n.sub}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+          <AiFlow />
 
           {/* capabilities */}
           <div className="mt-20 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 md:mt-28">
@@ -136,6 +114,7 @@ export default function AiSection() {
               <Magnetic strength={0.25}>
                 <a
                   href="#contact"
+                  data-cursor="Book"
                   className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 text-lg font-semibold text-cream"
                 >
                   Book a free automation review ↗
