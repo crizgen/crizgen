@@ -3,13 +3,13 @@
 import { motion, MotionConfig } from "motion/react";
 import { WORK } from "@/lib/content";
 import SplitReveal from "./SplitReveal";
-import { CrmVisual, AiChatVisual, DeliveryVisual, DocVisual } from "./WorkVisuals";
+import LoopVideo from "./LoopVideo";
 
-const VISUALS = {
-  crm: CrmVisual,
-  chat: AiChatVisual,
-  delivery: DeliveryVisual,
-  doc: DocVisual,
+const VIDEO = {
+  chat: "ask",
+  doc: "reader",
+  crm: "pipeline",
+  delivery: "dispatch",
 } as const;
 
 const BG = [
@@ -45,7 +45,6 @@ export default function Work() {
 
           <div className="grid gap-4 md:grid-cols-2 md:gap-5">
             {WORK.map((p, i) => {
-              const Visual = VISUALS[p.visual];
               return (
                 <motion.article
                   key={p.title}
@@ -56,8 +55,8 @@ export default function Work() {
                   whileHover={{ y: -6 }}
                   className="flex flex-col overflow-hidden rounded-[2rem] border border-cream/10 bg-ink-2"
                 >
-                  <div className={`relative aspect-[16/11] p-5 md:p-7 ${BG[i]}`}>
-                    <Visual />
+                  <div className={`relative aspect-[16/11] overflow-hidden ${BG[i]}`}>
+                    <LoopVideo name={VIDEO[p.visual]} label={`${p.title}: ${p.kind} concept demo`} />
                     <span className="absolute right-4 top-4 z-10 rounded-full bg-ink/80 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-cream backdrop-blur">
                       Concept
                     </span>
