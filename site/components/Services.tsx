@@ -43,10 +43,6 @@ export default function Services() {
               accentClassName="font-display italic text-ember"
             />
           </h2>
-          <p className="max-w-sm text-ink/65">
-            Three things, done properly. Everything else we&rsquo;ll tell you to get from
-            someone else.
-          </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-6 md:gap-5">
