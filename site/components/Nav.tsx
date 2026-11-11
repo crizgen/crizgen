@@ -26,7 +26,7 @@ export default function Nav() {
           Crizgen<span className="text-ember">.</span>
         </a>
 
-        <nav className="hidden items-center gap-9 text-sm md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 text-sm lg:flex xl:gap-9" aria-label="Primary">
           {NAV.map((l) => (
             <a key={l.href} href={l.href} className="group relative">
               {l.label}
@@ -36,7 +36,7 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Magnetic strength={0.25}>
               <a href="#contact" className="rounded-full border border-white/70 px-5 py-2 text-sm">
                 Start a project
@@ -44,7 +44,7 @@ export default function Nav() {
             </Magnetic>
           </div>
           <button
-            className="md:hidden text-sm uppercase tracking-widest"
+            className="text-sm uppercase tracking-widest lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((o) => !o)}
@@ -62,7 +62,7 @@ export default function Nav() {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 -z-10 flex flex-col justify-center gap-4 bg-ink px-6 text-cream md:hidden"
+            className="fixed inset-0 -z-10 flex flex-col justify-center gap-4 bg-ink px-6 text-cream lg:hidden"
             style={{ mixBlendMode: "normal" }}
           >
             {NAV.map((l, i) => (

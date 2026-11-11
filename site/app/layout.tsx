@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Bricolage_Grotesque, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const instrument = Instrument_Serif({
   variable: "--font-instrument",
@@ -22,15 +24,16 @@ const mono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://crizgen.com"),
-  title: "Crizgen | Web & Mobile App Studio in Chennai",
+  title: "Crizgen | Web, Mobile & AI Studio in Chennai",
+  alternates: { canonical: "/" },
   description:
-    "Crizgen is a Chennai studio building fast websites, web apps and mobile apps for ambitious businesses.",
+    "Crizgen is a Chennai studio building fast websites, web apps, mobile apps and AI solutions for ambitious businesses.",
   openGraph: {
     type: "website",
     url: "https://crizgen.com/",
-    title: "Crizgen | Web & Mobile App Studio",
+    title: "Crizgen | Web, Mobile & AI Studio",
     description:
-      "We design and build websites, web apps and mobile apps. Based in Chennai, India.",
+      "We design and build websites, web apps, mobile apps and AI solutions. Based in Chennai, India.",
   },
   twitter: { card: "summary_large_image" },
   icons: { icon: "/favicon.svg" },
@@ -44,6 +47,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="grain">
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

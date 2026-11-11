@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { BUILDS } from "@/lib/content";
+import { BUILDS, STACK } from "@/lib/content";
 import SplitReveal from "./SplitReveal";
 
 export default function Builds() {
@@ -48,7 +48,11 @@ export default function Builds() {
           ))}
         </div>
 
-        <p className="mt-16 max-w-xl text-xl leading-snug">
+        <p className="mt-14 font-mono text-xs uppercase tracking-[0.2em] text-ink/50">
+          Our usual stack: <span className="text-ink/80">{STACK}</span>
+        </p>
+
+        <p className="mt-10 max-w-xl text-xl leading-snug">
           Don&rsquo;t see yours?{" "}
           <a
             href="#contact"

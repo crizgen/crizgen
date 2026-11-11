@@ -28,7 +28,10 @@ export default function Footer() {
 
       <div className="mx-auto flex max-w-[1500px] flex-col items-center justify-between gap-2 border-t border-cream/10 py-6 pr-0 text-sm text-cream/45 md:flex-row md:pr-20">
         <p>© 2026 Crizgen. All rights reserved.</p>
-        <a href="#top" className="hover:text-ember">Back to top ↑</a>
+        <div className="flex items-center gap-6">
+          <a href="/privacy" className="hover:text-ember">Privacy</a>
+          <a href="#top" className="hover:text-ember">Back to top ↑</a>
+        </div>
       </div>
     </footer>
   );

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { CONTACT } from "@/lib/content";
+import { CONTACT, ENGAGE, TIMELINES } from "@/lib/content";
 import SplitReveal from "./SplitReveal";
 import Magnetic from "./Magnetic";
 
@@ -71,6 +71,32 @@ export default function Contact() {
           />
         </h2>
 
+        <div className="mt-14 md:mt-20">
+          <p className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+            How we start
+          </p>
+          <ol className="grid gap-4 md:grid-cols-3">
+            {ENGAGE.map((s) => (
+              <li key={s.n} className="rounded-[1.5rem] bg-paper p-6">
+                <span className="font-display text-5xl italic leading-none text-ember">{s.n}</span>
+                <h3 className="mt-4 text-xl font-semibold">{s.title}</h3>
+                <p className="mt-2 text-ink/65">{s.body}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 text-ink/65">
+            <span className="mr-3 font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+              Typical timelines
+            </span>
+            {TIMELINES.map(([k, v], i) => (
+              <span key={k}>
+                {i > 0 && " · "}
+                {k} <strong className="font-semibold text-ink">{v}</strong>
+              </span>
+            ))}
+          </p>
+        </div>
+
         <div className="mt-16 grid gap-16 md:mt-24 md:grid-cols-[1fr_1.3fr]">
           <div className="space-y-10">
             <div>
@@ -131,6 +157,7 @@ export default function Contact() {
                 <option>A website or web app</option>
                 <option>A mobile app</option>
                 <option>UI / UX design</option>
+                <option>An AI solution or automation</option>
                 <option>The full package</option>
                 <option>Not sure yet</option>
               </select>

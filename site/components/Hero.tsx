@@ -97,7 +97,7 @@ export default function Hero() {
             transition={{ delay: 0.9, duration: 0.8 }}
             className="max-w-md text-lg leading-snug text-cream/70"
           >
-            Websites, web apps and mobile apps for founders and businesses who want
+            Websites, web apps, mobile apps and AI solutions for founders and businesses who want
             something that looks sharp, loads instantly and works every time.
           </motion.p>
 

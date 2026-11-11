@@ -122,8 +122,39 @@ export default function Services() {
             </div>
           </Card>
 
+          {/* AI */}
+          <Card className="min-h-[22rem] bg-ink-2 text-cream md:col-span-4" delay={0.1}>
+            <div className="flex items-start justify-between">
+              <span className="font-mono text-xs uppercase tracking-widest text-cream/50">04</span>
+              <svg viewBox="0 0 200 110" className="w-44 md:w-56" fill="none" aria-hidden>
+                {[[20,25,70,55],[20,85,70,55],[70,55,130,30],[70,55,130,80],[130,30,180,55],[130,80,180,55]].map(([x1,y1,x2,y2],i)=>(
+                  <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#f3ede2" strokeOpacity=".25" strokeWidth="1.5" />
+                ))}
+                {[[20,25],[20,85],[70,55],[130,30],[130,80],[180,55]].map(([cx,cy],i)=>(
+                  <motion.circle
+                    key={i}
+                    cx={cx}
+                    cy={cy}
+                    r="7"
+                    fill={i===5 ? "#ff4d1c" : "#f3ede2"}
+                    animate={{ opacity: [0.35, 1, 0.35] }}
+                    transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.3 }}
+                  />
+                ))}
+              </svg>
+            </div>
+            <div>
+              <h3 className="font-display text-5xl italic md:text-6xl">AI solutions</h3>
+              <p className="mt-4 max-w-lg text-cream/65">
+                Assistants that answer from your own content, tools that read documents and
+                automate repetitive work, and AI features inside your product. Practical,
+                measured, and built to save real time.
+              </p>
+            </div>
+          </Card>
+
           {/* Support strip */}
-          <Card className="min-h-[22rem] bg-paper md:col-span-4" delay={0.1}>
+          <Card className="min-h-[16rem] bg-paper md:col-span-6" delay={0.1}>
             <span className="font-mono text-xs uppercase tracking-widest text-ink/50">
               Also
             </span>

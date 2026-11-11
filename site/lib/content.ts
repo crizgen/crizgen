@@ -14,6 +14,8 @@ export const CONTACT = {
 export const NAV = [
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
+  { href: "#builds", label: "What we build" },
+  { href: "#work", label: "Work" },
   { href: "#process", label: "Process" },
   { href: "#contact", label: "Contact" },
 ];
@@ -47,7 +49,7 @@ export const PROCESS = [
 ];
 
 export const MANIFESTO =
-  "We are a design-led engineering studio that builds websites and apps for founders who care how their product feels, not just how it ships. No account managers. No handoffs. Just the people who make it.";
+  "We are a design-led engineering studio that builds websites, apps and AI solutions for founders who care how their product feels, not just how it ships. No account managers. No handoffs. Just the people who make it.";
 
 export const BUILDS = [
   {
@@ -70,4 +72,69 @@ export const BUILDS = [
       { name: "Customer apps", desc: "Loyalty, bookings and account features for your own brand." },
     ],
   },
+  {
+    group: "AI solutions",
+    items: [
+      { name: "AI assistants & chatbots", desc: "Support and sales assistants that answer from your own content, on your website or WhatsApp." },
+      { name: "Document & data extraction", desc: "Read invoices, forms and PDFs, pull out the fields and send them straight into your system." },
+      { name: "Workflow automation", desc: "Connect your tools and let AI handle repetitive steps like routing, drafting and follow-ups." },
+      { name: "Search & recommendations", desc: "Smarter search and product suggestions inside your app or store." },
+      { name: "AI inside your product", desc: "Add summaries, generation or insights to something you already run." },
+    ],
+  },
 ];
+
+
+export const STACK =
+  "React · Next.js · TypeScript · Node.js · Python · PostgreSQL · Flutter · React Native";
+
+export const ENGAGE = [
+  { n: "1", title: "Tell us your idea", body: "Use the form or WhatsApp. A few lines is enough to start." },
+  { n: "2", title: "Free intro call", body: "We reply within 24 hours and set up a 30-minute call. No cost, no obligation." },
+  { n: "3", title: "Clear proposal", body: "Scope, timeline and price in writing, usually within 3 working days." },
+];
+
+export const TIMELINES = [
+  ["Business website", "2–4 weeks"],
+  ["Web app", "6–12 weeks"],
+  ["Mobile app", "8–14 weeks"],
+  ["AI assistant or automation", "3–8 weeks"],
+];
+
+export const WORK = [
+  {
+    visual: "crm",
+    kind: "Web app · CRM",
+    title: "Pipeline",
+    desc: "A CRM for a growing sales team. Leads move across a visual pipeline, follow-ups are automatic and managers see everything at a glance.",
+    tags: ["Next.js", "PostgreSQL", "Dashboards"],
+  },
+  {
+    visual: "chat",
+    kind: "AI · Assistant",
+    title: "Ask",
+    desc: "A support assistant that answers customer questions from a company's own help content, instantly, and hands over to a human when it is unsure.",
+    tags: ["LLM", "Retrieval", "Python", "WhatsApp"],
+  },
+  {
+    visual: "shop",
+    kind: "Web app · E-commerce",
+    title: "Hand&Made",
+    desc: "A fast online store for a handmade brand with a simple one-page checkout and an admin to manage stock and orders.",
+    tags: ["Next.js", "Payments", "Admin"],
+  },
+  {
+    visual: "delivery",
+    kind: "Mobile app · On-demand",
+    title: "Dispatch",
+    desc: "Customers watch their order arrive live. Riders get the route and a one-tap status update.",
+    tags: ["Flutter", "Maps", "Live tracking"],
+  },
+  {
+    visual: "doc",
+    kind: "AI · Automation",
+    title: "Reader",
+    desc: "Reads invoices and forms, pulls out the vendor, date and total, and posts them to your accounting tool.",
+    tags: ["OCR", "AI extraction", "Automation"],
+  },
+] as const;
