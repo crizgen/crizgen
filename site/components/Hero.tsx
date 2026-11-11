@@ -37,7 +37,7 @@ export default function Hero() {
         mx.set((e.clientX - r.left) / r.width);
         my.set((e.clientY - r.top) / r.height);
       }}
-      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-ink px-5 pb-8 pt-28 md:px-10"
+      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-ink px-5 pb-20 pt-28 md:px-10 md:pb-28"
     >
       {/* glow */}
       <motion.div
