@@ -47,4 +47,4 @@ export const PROCESS = [
 ];
 
 export const MANIFESTO =
-  "We are a small studio in Chennai. We design and build websites and apps for founders who care how their product feels, not just how it ships. No account managers. No handoffs. Just the people who make it.";
+  "We are a small studio. We design and build websites and apps for founders who care how their product feels, not just how it ships. No account managers. No handoffs. Just the people who make it.";

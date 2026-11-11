@@ -68,7 +68,7 @@ export default function Hero() {
           transition={{ delay: 0.3 }}
           className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-cream/60"
         >
-          Web &amp; app studio — Chennai, IN
+          Web &amp; app studio
         </motion.p>
 
         <motion.h1
