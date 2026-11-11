@@ -6,7 +6,7 @@ import { CONTACT, ENGAGE_LINE } from "@/lib/content";
 import SplitReveal from "./SplitReveal";
 import Magnetic from "./Magnetic";
 
-type Errors = Partial<Record<"name" | "email" | "message", string>>;
+type Errors = Partial<Record<"name" | "email" | "phone" | "message", string>>;
 
 const field =
   "w-full border-0 border-b border-ink/25 bg-transparent py-4 text-xl transition-colors placeholder:text-ink/60 focus:border-ember";
@@ -26,11 +26,19 @@ export default function Contact() {
     if (!data.email?.trim()) next.email = "We need an email to reply to.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim()))
       next.email = "That email doesn't look right.";
+    const phone = data.phone?.trim() ?? "";
+    if (phone) {
+      const digits = phone.replace(/\D/g, "");
+      if (!/^[+\d\s().-]+$/.test(phone) || digits.length < 7 || digits.length > 15)
+        next.phone = "That number doesn't look right. You can leave it blank.";
+    } else {
+      delete data.phone;
+    }
     if (!data.message?.trim() || data.message.trim().length < 10)
       next.message = "Give us a little more to go on (10+ characters).";
     setErrors(next);
     setStatus(null);
-    const firstBad = (["name", "email", "message"] as const).find((k) => next[k]);
+    const firstBad = (["name", "email", "phone", "message"] as const).find((k) => next[k]);
     if (firstBad) {
       document.getElementById(firstBad)?.focus();
       return;
@@ -134,6 +142,14 @@ export default function Contact() {
               </label>
               <input id="email" name="email" type="email" autoComplete="email" placeholder="jane@company.com" className={field} aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} />
               {errors.email && <p id="email-error" className="mt-2 text-sm font-medium text-[#b92d08]" role="alert">{errors.email}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="phone" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">
+                Mobile number <span className="normal-case tracking-normal">(optional)</span>
+              </label>
+              <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98765 43210" className={field} aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-error" : undefined} />
+              {errors.phone && <p id="phone-error" className="mt-2 text-sm font-medium text-[#b92d08]" role="alert">{errors.phone}</p>}
             </div>
 
             <div>

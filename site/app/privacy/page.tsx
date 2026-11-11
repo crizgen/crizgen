@@ -25,7 +25,8 @@ const sections: { h: string; body: React.ReactNode }[] = [
       <>
         <p>
           <strong>Contact form.</strong> When you send us a message we collect your name,
-          email address, the service you are interested in and the message you write.
+          email address, the service you are interested in and the message you write. You can
+          also give us a mobile number, but that is optional.
         </p>
         <p>
           <strong>WhatsApp, email and phone.</strong> If you contact us this way we see the
