@@ -53,7 +53,7 @@ export default function AiFlow() {
                     ? "border-ember bg-ember text-ink"
                     : done
                       ? "border-ember bg-ink text-ember"
-                      : "border-cream/20 bg-ink-2 text-cream/50"
+                      : "border-cream/20 bg-ink-2 text-cream/60"
                 }`}
               >
                 <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -64,10 +64,10 @@ export default function AiFlow() {
                 )}
               </motion.span>
               <div>
-                <p className={`text-xl font-semibold transition-colors duration-300 ${on || done ? "text-cream" : "text-cream/55"}`}>
+                <p className={`text-xl font-semibold transition-colors duration-300 ${on || done ? "text-cream" : "text-cream/60"}`}>
                   {n.label}
                 </p>
-                <p className="mt-1 max-w-[16rem] text-sm text-cream/55 md:mx-auto">{n.sub}</p>
+                <p className="mt-1 max-w-[16rem] text-sm text-cream/60 md:mx-auto">{n.sub}</p>
               </div>
             </li>
           );

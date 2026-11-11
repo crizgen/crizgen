@@ -10,11 +10,11 @@ export default function Footer() {
         <ul className="flex flex-wrap gap-x-8 gap-y-2">
           {NAV.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="hover:text-ember">{l.label}</a>
+              <a href={l.href} className="inline-block py-2 hover:text-ember">{l.label}</a>
             </li>
           ))}
-          <li><a href={CONTACT.github} target="_blank" rel="noopener noreferrer" className="hover:text-ember">GitHub</a></li>
-          <li><a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-ember">LinkedIn</a></li>
+          <li><a href={CONTACT.github} target="_blank" rel="noopener noreferrer" className="inline-block py-2 hover:text-ember">GitHub</a></li>
+          <li><a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" className="inline-block py-2 hover:text-ember">LinkedIn</a></li>
         </ul>
       </div>
 
@@ -25,11 +25,11 @@ export default function Footer() {
         crizgen
       </p>
 
-      <div className="mx-auto flex max-w-[1500px] flex-col items-center justify-between gap-2 border-t border-cream/10 py-6 pr-0 text-sm text-cream/45 md:flex-row md:pr-20">
+      <div className="mx-auto flex max-w-[1500px] flex-col items-center justify-between gap-2 border-t border-cream/10 py-6 pr-0 text-sm text-cream/60 md:flex-row md:pr-20">
         <p>© 2026 Crizgen. All rights reserved.</p>
         <div className="flex items-center gap-6">
-          <a href="/privacy" className="hover:text-ember">Privacy</a>
-          <a href="#top" className="hover:text-ember">Back to top ↑</a>
+          <a href="/privacy" className="inline-block py-2 hover:text-ember">Privacy</a>
+          <a href="#top" className="inline-block py-2 hover:text-ember">Back to top ↑</a>
         </div>
       </div>
     </footer>

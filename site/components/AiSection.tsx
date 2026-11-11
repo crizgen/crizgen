@@ -6,7 +6,7 @@ import AiFlow from "./AiFlow";
 import SplitReveal from "./SplitReveal";
 import Magnetic from "./Magnetic";
 
-const label = "font-mono text-xs uppercase tracking-[0.25em] text-cream/50";
+const label = "font-mono text-xs uppercase tracking-[0.25em] text-cream/60";
 
 function Reveal({
   children,

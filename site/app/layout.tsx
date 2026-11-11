@@ -48,6 +48,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${instrument.variable} ${bricolage.variable} ${mono.variable} antialiased`}
     >
       <body className="grain">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-full focus:bg-ember focus:px-5 focus:py-3 focus:font-semibold focus:text-ink"
+        >
+          Skip to main content
+        </a>
         <Intro />
         <Cursor />
         <SmoothScroll>{children}</SmoothScroll>

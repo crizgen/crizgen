@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <JsonLd />
       <Nav />
-      <main>
+      <main id="main">
         <Hero />
         <Manifesto />
         <AiSection />

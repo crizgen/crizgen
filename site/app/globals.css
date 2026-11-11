@@ -143,3 +143,16 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .intro { display: none; }
 }
+
+/* ---- keyboard focus: visible on every control ---- */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+  border-radius: 6px;
+}

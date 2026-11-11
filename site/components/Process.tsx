@@ -50,7 +50,7 @@ export default function Process() {
           <h2 className="text-[clamp(2.6rem,7vw,7rem)] font-medium leading-[0.92] tracking-[-0.04em]">
             How it <span className="font-display italic text-ember">works.</span>
           </h2>
-          <p className="hidden font-mono text-xs uppercase tracking-[0.25em] text-cream/50 md:block">
+          <p className="hidden font-mono text-xs uppercase tracking-[0.25em] text-cream/60 md:block">
             Scroll →
           </p>
         </div>

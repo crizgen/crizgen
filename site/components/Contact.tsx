@@ -9,7 +9,7 @@ import Magnetic from "./Magnetic";
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
 const field =
-  "w-full border-0 border-b border-ink/25 bg-transparent py-4 text-xl outline-none transition-colors placeholder:text-ink/35 focus:border-ember";
+  "w-full border-0 border-b border-ink/25 bg-transparent py-4 text-xl transition-colors placeholder:text-ink/60 focus:border-ember";
 
 export default function Contact() {
   const [errors, setErrors] = useState<Errors>({});
@@ -30,7 +30,11 @@ export default function Contact() {
       next.message = "Give us a little more to go on (10+ characters).";
     setErrors(next);
     setStatus(null);
-    if (Object.keys(next).length) return;
+    const firstBad = (["name", "email", "message"] as const).find((k) => next[k]);
+    if (firstBad) {
+      document.getElementById(firstBad)?.focus();
+      return;
+    }
 
     setSending(true);
     try {
@@ -83,7 +87,7 @@ export default function Contact() {
         <div className="mt-16 grid gap-16 md:mt-24 md:grid-cols-[1fr_1.3fr]">
           <div className="space-y-10">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/50">Email</p>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">Email</p>
               <a
                 href={`mailto:${CONTACT.email}`}
                 className="mt-2 inline-block break-all font-display text-3xl italic underline decoration-ember decoration-2 underline-offset-8 md:text-4xl"
@@ -92,13 +96,13 @@ export default function Contact() {
               </a>
             </div>
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/50">Phone</p>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">Phone</p>
               <a href={CONTACT.phoneHref} className="mt-2 inline-block text-2xl">
                 {CONTACT.phone}
               </a>
             </div>
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/50">Studio</p>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">Studio</p>
               <p className="mt-2 max-w-xs text-lg leading-snug text-ink/75">{CONTACT.address}</p>
             </div>
             <Magnetic>
@@ -117,23 +121,23 @@ export default function Contact() {
             <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" />
 
             <div>
-              <label htmlFor="name" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+              <label htmlFor="name" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">
                 Your name
               </label>
-              <input id="name" name="name" autoComplete="name" placeholder="Jane Doe" className={field} aria-invalid={!!errors.name} />
-              {errors.name && <p className="mt-2 text-sm text-ember" role="alert">{errors.name}</p>}
+              <input id="name" name="name" autoComplete="name" placeholder="Jane Doe" className={field} aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} />
+              {errors.name && <p id="name-error" className="mt-2 text-sm font-medium text-[#b92d08]" role="alert">{errors.name}</p>}
             </div>
 
             <div>
-              <label htmlFor="email" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+              <label htmlFor="email" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">
                 Email
               </label>
-              <input id="email" name="email" type="email" autoComplete="email" placeholder="jane@company.com" className={field} aria-invalid={!!errors.email} />
-              {errors.email && <p className="mt-2 text-sm text-ember" role="alert">{errors.email}</p>}
+              <input id="email" name="email" type="email" autoComplete="email" placeholder="jane@company.com" className={field} aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} />
+              {errors.email && <p id="email-error" className="mt-2 text-sm font-medium text-[#b92d08]" role="alert">{errors.email}</p>}
             </div>
 
             <div>
-              <label htmlFor="service" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+              <label htmlFor="service" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">
                 I need
               </label>
               <select id="service" name="service" className={field}>
@@ -147,11 +151,11 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+              <label htmlFor="message" className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">
                 Tell us about it
               </label>
-              <textarea id="message" name="message" rows={4} placeholder="What are you building, and by when?" className={`${field} resize-none`} aria-invalid={!!errors.message} />
-              {errors.message && <p className="mt-2 text-sm text-ember" role="alert">{errors.message}</p>}
+              <textarea id="message" name="message" rows={4} placeholder="What are you building, and by when?" className={`${field} resize-none`} aria-invalid={!!errors.message} aria-describedby={errors.message ? "message-error" : undefined} />
+              {errors.message && <p id="message-error" className="mt-2 text-sm font-medium text-[#b92d08]" role="alert">{errors.message}</p>}
             </div>
 
             <div className="flex flex-wrap items-center gap-6">
@@ -165,7 +169,7 @@ export default function Contact() {
                 {sending ? "Sending…" : "Send it ↗"}
               </motion.button>
               {status && (
-                <p role="status" className={status.ok ? "text-emerald-700" : "text-red-600"}>
+                <p role="status" className={status.ok ? "text-emerald-800" : "text-[#b92d08]"}>
                   {status.msg}
                 </p>
               )}

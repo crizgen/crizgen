@@ -137,7 +137,7 @@ export default function PrivacyPage() {
       </header>
 
       <main className="mx-auto max-w-3xl px-5 pb-24 pt-10 md:pt-16">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/50">Legal</p>
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">Legal</p>
         <h1 className="mt-3 text-5xl font-medium leading-none tracking-[-0.04em] md:text-7xl">
           Privacy <span className="font-display italic text-ember">policy.</span>
         </h1>

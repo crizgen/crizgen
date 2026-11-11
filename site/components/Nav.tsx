@@ -68,7 +68,7 @@ export default function Nav() {
               </Magnetic>
             </div>
             <button
-              className="py-2 text-sm uppercase tracking-widest lg:hidden"
+              className="-mr-2 inline-flex min-h-11 items-center px-2 text-sm uppercase tracking-widest lg:hidden"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               onClick={() => setOpen((o) => !o)}

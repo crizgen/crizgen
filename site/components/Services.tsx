@@ -63,7 +63,7 @@ export default function Services() {
           {/* AI */}
           <Card className="bg-ink text-cream md:col-span-4">
             <div className="flex items-start justify-between">
-              <span className="font-mono text-xs uppercase tracking-widest text-cream/50">01</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-cream/60">01</span>
               <svg viewBox="0 0 200 110" className="w-44 md:w-56" fill="none" aria-hidden>
                 {[[20,25,70,55],[20,85,70,55],[70,55,130,30],[70,55,130,80],[130,30,180,55],[130,80,180,55]].map(([x1,y1,x2,y2],i)=>(
                   <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#f3ede2" strokeOpacity=".25" strokeWidth="1.5" />
@@ -118,7 +118,7 @@ export default function Services() {
           {/* Mobile */}
           <Card className="bg-sand md:col-span-3" delay={0.05}>
             <div className="flex items-start justify-between">
-              <span className="font-mono text-xs uppercase tracking-widest text-ink/50">03</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-ink/60">03</span>
               <motion.svg
                 viewBox="0 0 70 120"
                 className="w-16"
@@ -147,7 +147,7 @@ export default function Services() {
           {/* Design */}
           <Card className="bg-paper md:col-span-3" delay={0.1}>
             <div className="flex items-start justify-between">
-              <span className="font-mono text-xs uppercase tracking-widest text-ink/50">04</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-ink/60">04</span>
               <div className="flex">
                 {["#ff4d1c", "#0b0b0c", "#e7dcc8"].map((c, i) => (
                   <span
@@ -168,7 +168,7 @@ export default function Services() {
           <Card className="!min-h-0 bg-ink-2 text-cream md:col-span-6" delay={0.05}>
             <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-cream/50">05</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-cream/60">05</span>
                 <h3 className="mt-6 font-display text-5xl italic md:text-6xl">Cloud &amp; support</h3>
                 <p className="mt-4 text-lg text-cream/70">Hosting, security and care after launch.</p>
               </div>
@@ -184,7 +184,7 @@ export default function Services() {
         </div>
 
         <p className="mt-10 text-lg text-ink/70">
-          <span className="mr-3 font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+          <span className="mr-3 font-mono text-xs uppercase tracking-[0.25em] text-ink/60">
             And everything around it
           </span>
           {ALSO_LINE.join(" · ")}

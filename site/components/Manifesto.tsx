@@ -33,7 +33,7 @@ export default function Manifesto() {
       className="relative -mt-10 rounded-t-[2.5rem] bg-cream px-5 py-28 text-ink md:-mt-16 md:rounded-t-[4rem] md:px-10 md:py-44"
     >
       <div className="mx-auto max-w-[1500px]">
-        <p className="mb-10 font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+        <p className="mb-10 font-mono text-xs uppercase tracking-[0.25em] text-ink/60">
           (About)
         </p>
         <p className="font-display text-[clamp(2rem,5.4vw,5.5rem)] leading-[1.02] tracking-[-0.02em]">
