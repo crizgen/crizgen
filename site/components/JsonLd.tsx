@@ -11,7 +11,7 @@ export default function JsonLd() {
         "@id": `${SITE}/#org`,
         name: "Crizgen",
         url: `${SITE}/`,
-        logo: `${SITE}/favicon.svg`,
+        logo: `${SITE}/icon-512.png`,
         email: CONTACT.email,
         telephone: "+919092656327",
         sameAs: [CONTACT.github, CONTACT.linkedin],

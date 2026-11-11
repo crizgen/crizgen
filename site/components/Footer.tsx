@@ -1,12 +1,16 @@
 import { CONTACT, NAV } from "@/lib/content";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer className="overflow-hidden bg-ink px-5 pt-16 text-cream md:px-10">
       <div className="mx-auto flex max-w-[1500px] flex-col justify-between gap-10 md:flex-row">
-        <p className="max-w-xs text-cream/60">
+        <div>
+          <Logo markClassName="size-9" wordClassName="text-4xl" />
+          <p className="mt-5 max-w-xs text-cream/60">
           Crizgen is an AI, web and app studio, building for founders and businesses worldwide.
-        </p>
+          </p>
+        </div>
         <ul className="flex flex-wrap gap-x-8 gap-y-2">
           {NAV.map((l) => (
             <li key={l.href}>

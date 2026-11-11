@@ -3,12 +3,12 @@ export default function Intro() {
   return (
     <div className="intro" aria-hidden>
       <div className="intro-inner">
-        <svg viewBox="0 0 64 64" width="96" height="96" fill="none">
+        <svg viewBox="6 6 52 52" width="104" height="104" fill="none">
           <path
             className="intro-c"
-            d="M42 22 C37 17, 27 17, 22 22 C16 28, 16 36, 22 42 C27 47, 37 47, 42 42"
+            d="M44.12 44.71 A19 19 0 1 1 44.12 19.29"
           />
-          <circle className="intro-dot" cx="44" cy="32" r="3.5" />
+          <circle className="intro-dot" cx="51" cy="32" r="5.2" />
         </svg>
         <p className="intro-word">
           Crizgen<span>.</span>

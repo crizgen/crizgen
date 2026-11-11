@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/
 import { NAV } from "@/lib/content";
 import { useMedia } from "@/lib/useMedia";
 import Magnetic from "./Magnetic";
+import Logo from "./Logo";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -45,9 +46,10 @@ export default function Nav() {
           <a
             href="#top"
             onClick={() => setOpen(false)}
-            className="font-display text-3xl leading-none tracking-tight"
+            aria-label="Crizgen home"
+            className="inline-flex"
           >
-            Crizgen<span className="text-ember">.</span>
+            <Logo />
           </a>
 
           <nav className="hidden items-center gap-6 text-sm lg:flex xl:gap-9" aria-label="Primary">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { CONTACT } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -129,8 +130,8 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-cream text-ink">
       <header className="mx-auto flex max-w-3xl items-center justify-between px-5 py-6">
-        <Link href="/" className="font-display text-3xl leading-none">
-          Crizgen<span className="text-ember">.</span>
+        <Link href="/" aria-label="Crizgen home">
+          <Logo />
         </Link>
         <Link href="/" className="text-sm underline underline-offset-4">
           ← Back to site

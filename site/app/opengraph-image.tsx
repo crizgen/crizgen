@@ -21,8 +21,14 @@ export default function OpengraphImage() {
           color: "#f3ede2",
         }}
       >
-        <div style={{ display: "flex", fontSize: 44, fontWeight: 700 }}>
-          Crizgen<span style={{ color: "#ff4d1c" }}>.</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 48, fontWeight: 700 }}>
+          <svg width="58" height="58" viewBox="6 6 52 52">
+            <path d="M44.12 44.71 A19 19 0 1 1 44.12 19.29" fill="none" stroke="#f3ede2" strokeWidth="8" strokeLinecap="round" />
+            <circle cx="51" cy="32" r="5.2" fill="#ff4d1c" />
+          </svg>
+          <div style={{ display: "flex" }}>
+            Crizgen<span style={{ color: "#ff4d1c" }}>.</span>
+          </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", fontSize: 112, fontWeight: 700, lineHeight: 1, letterSpacing: -4 }}>
