@@ -63,3 +63,11 @@ export const WORK = [
     desc: "A delivery app. Customers track orders live and riders get the route.",
   },
 ] as const;
+
+export const ALSO_LINE = [
+  "API integrations",
+  "Performance audits",
+  "SEO foundations",
+  "Analytics",
+  "Accessibility",
+];

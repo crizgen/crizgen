@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import SplitReveal from "./SplitReveal";
+import { ALSO_LINE } from "@/lib/content";
 
 const spring = { type: "spring", stiffness: 260, damping: 18 } as const;
 
@@ -163,7 +164,31 @@ export default function Services() {
               <Chips tone="border-ink/25 text-ink/80" items={["Prototypes", "Design systems"]} />
             </div>
           </Card>
+          {/* Cloud & support */}
+          <Card className="!min-h-0 bg-ink-2 text-cream md:col-span-6" delay={0.05}>
+            <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-cream/50">05</span>
+                <h3 className="mt-6 font-display text-5xl italic md:text-6xl">Cloud &amp; support</h3>
+                <p className="mt-4 text-lg text-cream/70">Hosting, security and care after launch.</p>
+              </div>
+              <ul className="flex flex-wrap gap-2 md:max-w-md md:justify-end">
+                {["Cloud hosting", "Security & backups", "Monitoring", "Maintenance & support"].map((t) => (
+                  <li key={t} className="rounded-full border border-cream/25 px-3.5 py-1.5 text-sm text-cream/80">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Card>
         </div>
+
+        <p className="mt-10 text-lg text-ink/70">
+          <span className="mr-3 font-mono text-xs uppercase tracking-[0.25em] text-ink/50">
+            And everything around it
+          </span>
+          {ALSO_LINE.join(" · ")}
+        </p>
       </div>
     </section>
   );
