@@ -1,6 +1,6 @@
 import { CONTACT } from "@/lib/content";
 
-const SITE = "https://crizgen.com";
+const SITE = "https://www.crizgen.com";
 
 export default function JsonLd() {
   const data = {
