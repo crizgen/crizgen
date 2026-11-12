@@ -16,6 +16,14 @@ export default function Contact() {
   const [status, setStatus] = useState<{ ok: boolean; msg: string } | null>(null);
   const [sending, setSending] = useState(false);
 
+  // Clear a field's error as soon as the person edits it, and drop the old
+  // success/failure message once they start typing again.
+  function onInput(e: React.FormEvent<HTMLFormElement>) {
+    const id = (e.target as HTMLElement).id as keyof Errors;
+    setErrors((prev) => (prev[id] ? { ...prev, [id]: undefined } : prev));
+    setStatus((s) => (s ? null : s));
+  }
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -125,7 +133,7 @@ export default function Contact() {
             </Magnetic>
           </div>
 
-          <form onSubmit={onSubmit} noValidate className="space-y-8">
+          <form onSubmit={onSubmit} onInput={onInput} noValidate className="space-y-8">
             <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" />
 
             <div>
